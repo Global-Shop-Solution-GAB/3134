@@ -1,0 +1,430 @@
+Program.Sub.ScreenSU.Start
+gui.F_Part_Search..create
+gui.F_Part_Search..caption("Search for Part")
+gui.F_Part_Search..size(4500,3000)
+gui.F_Part_Search..position(0,0)
+gui.F_Part_Search..event(unload,f_part_search_unload)
+gui.F_Part_Search..alwaysontop(False)
+gui.F_Part_Search..fontname("Arial")
+gui.F_Part_Search..fontsize(8)
+gui.F_Part_Search..forecolor(0)
+gui.F_Part_Search..fontstyle(,,,,)
+gui.F_Part_Search..BackColor(-2147483633)
+gui.F_Part_Search..controlbox(True)
+gui.F_Part_Search..maxbutton(False)
+gui.F_Part_Search..minbutton(True)
+gui.F_Part_Search..mousepointer(0)
+gui.F_Part_Search..moveable(True)
+gui.F_Part_Search..sizeable(False)
+gui.F_Part_Search..ShowInTaskBar(True)
+gui.F_Part_Search..titlebar(True)
+gui.F_Part_Search.lbl1.create(label,"Part Number (case sensitive)",True,2220,255,1,200,200,True,0,Arial,8,-2147483633,0)
+gui.F_Part_Search.txtPartNo.create(textbox,"",True,2200,300,0,200,400,True,0,Arial,8,-2147483643,1)
+gui.F_Part_Search.txtPartNo.event(keypressenter,txtpartno_keypressenter)
+gui.F_Part_Search.lbl2.create(label,"Part name/description (case sensitive)",True,1935,255,1,200,800,True,0,Arial,8,-2147483633,0)
+gui.F_Part_Search.txtPartDesc.create(textbox,"",True,4000,300,0,200,1000,True,0,Arial,8,-2147483643,1)
+gui.F_Part_Search.txtPartDesc.event(keypressenter,txtpartdesc_keypressenter)
+gui.F_Part_Search.lbl3.create(label,"Customer Name",True,1935,255,1,200,1400,True,0,Arial,8,-2147483633,0)
+gui.F_Part_Search.txtCustomer.create(textbox,"",True,3700,300,0,200,1600,False,0,Arial,8,16777215,1)
+gui.F_Part_Search.cmdCustomer.create(button)
+gui.F_Part_Search.cmdCustomer.caption("^")
+gui.F_Part_Search.cmdCustomer.visible(True)
+gui.F_Part_Search.cmdCustomer.size(300,300)
+gui.F_Part_Search.cmdCustomer.zorder(0)
+gui.F_Part_Search.cmdCustomer.position(3900,1600)
+gui.F_Part_Search.cmdCustomer.enabled(True)
+gui.F_Part_Search.cmdCustomer.fontname("Arial")
+gui.F_Part_Search.cmdCustomer.fontsize(8)
+gui.F_Part_Search.cmdCustomer.event(click,cmdcustomer_click)
+gui.F_Part_Search.cmdOk.create(button)
+gui.F_Part_Search.cmdOk.caption("OK")
+gui.F_Part_Search.cmdOk.visible(True)
+gui.F_Part_Search.cmdOk.size(855,375)
+gui.F_Part_Search.cmdOk.zorder(0)
+gui.F_Part_Search.cmdOk.position(200,2000)
+gui.F_Part_Search.cmdOk.enabled(True)
+gui.F_Part_Search.cmdOk.fontname("Arial")
+gui.F_Part_Search.cmdOk.fontsize(8)
+gui.F_Part_Search.cmdOk.event(click,cmdok_click)
+gui.F_Part_Search.lbl4.create(label,"No. of Results (1-999)",True,1935,255,1,2500,200,True,0,Arial,8,-2147483633,0)
+gui.F_Part_Search.txtResults.create(textbox,"100",True,1700,300,0,2500,400,True,0,Arial,8,-2147483643,1)
+gui.F_Part_Search.txtResults.numericonly(2)
+gui.F_Part_Search.txtResults.event(gotfocus,txtresults_gotfocus)
+gui.F_Part_Search.txtResults.event(keypressenter,txtresults_keypressenter)
+gui.F_Part_Search.txtResults.maxLength(3)
+gui.F_Part_Search.txtPartNo.tabstop(True)
+gui.F_Part_Search.txtPartNo.tabindex(1)
+gui.F_Part_Search.txtResults.tabstop(True)
+gui.F_Part_Search.txtResults.tabindex(2)
+gui.F_Part_Search.txtPartDesc.tabstop(True)
+gui.F_Part_Search.txtPartDesc.tabindex(3)
+gui.F_Part_Search.cmdCustomer.tabstop(True)
+gui.F_Part_Search.cmdCustomer.tabindex(4)
+gui.F_Part_Search.cmdOk.tabstop(True)
+gui.F_Part_Search.cmdOk.tabindex(5)
+gui.F_Part_Search.txtCustomer.tabstop(True)
+gui.F_Part_Search.txtCustomer.tabindex(6)
+
+
+gui.F_Part_Results..create
+gui.F_Part_Results..caption("Part Results")
+gui.F_Part_Results..size(14500,5750)
+gui.F_Part_Results..position(0,0)
+gui.F_Part_Results..event(resize,f_part_results_resize)
+gui.F_Part_Results..event(unload,f_part_results_unload)
+gui.F_Part_Results..alwaysontop(False)
+gui.F_Part_Results..fontname("Arial")
+gui.F_Part_Results..fontsize(8)
+gui.F_Part_Results..forecolor(0)
+gui.F_Part_Results..fontstyle(,,,,)
+gui.F_Part_Results..BackColor(-2147483633)
+gui.F_Part_Results..controlbox(True)
+gui.F_Part_Results..maxbutton(True)
+gui.F_Part_Results..minbutton(True)
+gui.F_Part_Results..mousepointer(0)
+gui.F_Part_Results..moveable(True)
+gui.F_Part_Results..sizeable(True)
+gui.F_Part_Results..ShowInTaskBar(True)
+gui.F_Part_Results..titlebar(True)
+gui.F_Part_Results.gsfgResults.create(gsflexgrid)
+gui.F_Part_Results.gsfgResults.FixedRows(0)
+gui.F_Part_Results.gsfgResults.FixedCols(0)
+gui.F_Part_Results.gsfgResults.visible(True)
+gui.F_Part_Results.gsfgResults.size(14050,5000)
+gui.F_Part_Results.gsfgResults.zorder(0)
+gui.F_Part_Results.gsfgResults.position(100,100)
+gui.F_Part_Results.gsfgResults.enabled(True)
+
+
+Program.Sub.ScreenSU.End
+
+Program.Sub.Preflight.Start
+
+Variable.UDT.uPart.Define("Source",String,"SOURCE")
+Variable.UDT.uPart.Define("Type",String,"TYPE")
+Variable.UDT.uPart.Define("Number",Long,"NUMBER")
+Variable.UDT.uPart.Define("Date",Date,"DATE")
+Variable.UDT.uPart.Define("Customer",String,"CUSTOMER")
+Variable.UDT.uPart.Define("PartNo",String,"PART")
+Variable.UDT.uPart.Define("PL",String,"PL")
+Variable.UDT.uPart.Define("Description",String,"DESCRIPTION")
+Variable.UDT.uPart.Define("Quantity",Long,"QUANTITY")
+Variable.UDT.uPart.Define("Price",String,"PRICE")
+Variable.uGlobal.Parts.Declare("uPart")
+Program.Sub.Preflight.End
+
+Program.Sub.Main.Start
+'SMC For Customer RAM Quote 1023
+'10/4/2010
+'Custom Hook
+
+F.ODBC.Connection!conx.OpenConnection(V.Ambient.PDSN,V.Ambient.PUser,V.Ambient.PPass,320)
+Gui.F_Part_Search.txtCustomer.ClearMetadata
+Gui.F_Part_Search..Show
+
+V.Local.iC.Declare(Long)
+
+Gui.F_Part_Results.gsfgResults.Rows(2)
+Gui.F_Part_Results.gsfgResults.Cols(11)
+Gui.F_Part_Results.gsfgResults.TextMatrix(0,0,"Source")
+Gui.F_Part_Results.gsfgResults.ColWidth(0,"1500")
+Gui.F_Part_Results.gsfgResults.TextMatrix(1,0,"Type")
+Gui.F_Part_Results.gsfgResults.ColWidth(1,"600")
+Gui.F_Part_Results.gsfgResults.TextMatrix(2,0,"Number")
+Gui.F_Part_Results.gsfgResults.ColWidth(2,"1100")
+Gui.F_Part_Results.gsfgResults.TextMatrix(3,0,"Date")
+Gui.F_Part_Results.gsfgResults.ColWidth(3,"1100")
+Gui.F_Part_Results.gsfgResults.TextMatrix(4,0,"Customer")
+Gui.F_Part_Results.gsfgResults.ColWidth(4,"1800")
+Gui.F_Part_Results.gsfgResults.TextMatrix(5,0,"Part Number")
+Gui.F_Part_Results.gsfgResults.ColWidth(5,"2000")
+Gui.F_Part_Results.gsfgResults.TextMatrix(6,0,"Product Line")
+Gui.F_Part_Results.gsfgResults.ColWidth(6,"1000")
+Gui.F_Part_Results.gsfgResults.TextMatrix(7,0,"Description")
+Gui.F_Part_Results.gsfgResults.ColWidth(7,"3000")
+Gui.F_Part_Results.gsfgResults.TextMatrix(8,0,"Quantity")
+Gui.F_Part_Results.gsfgResults.ColWidth(8,"800")
+Gui.F_Part_Results.gsfgResults.TextMatrix(9,0,"Price")
+Gui.F_Part_Results.gsfgResults.ColWidth(9,"800")
+Gui.F_Part_Results.gsfgResults.TextMatrix(10,0,"")
+Gui.F_Part_Results.gsfgResults.ColWidth(10,"0")
+
+Gui.F_Part_Results.gsfgResults.Fixedrows(1)
+
+F.Intrinsic.Control.For(V.Local.iC,0,10,1)
+	Gui.F_Part_Results.gsfgResults.BuildStyle(1,V.Local.iC,"type","locked","true")
+	Gui.F_Part_Results.gsfgResults.BuildStyle(1,V.Local.iC,"format","alignment","2")
+	Gui.F_Part_Results.gsfgResults.BuildStyle(1,V.Local.iC,"color","back",-2147483643)
+F.Intrinsic.Control.Next(V.Local.iC)
+
+F.Intrinsic.Control.For(V.Local.iC,0,10,1)
+	Gui.F_Part_Results.gsfgResults.BuildStyle(2,V.Local.iC,"type","locked","true")
+	Gui.F_Part_Results.gsfgResults.BuildStyle(2,V.Local.iC,"format","alignment","2")
+	Gui.F_Part_Results.gsfgResults.BuildStyle(2,V.Local.iC,"color","back",14671839)
+F.Intrinsic.Control.Next(V.Local.iC)
+
+Gui.F_Part_Results.gsfgResults.ApplyStyle(1,1)
+
+Program.Sub.Main.End
+
+program.sub.f_part_search_unload.start
+F.ODBC.Connection!conx.Close
+F.Intrinsic.Control.End
+
+program.sub.f_part_search_unload.end
+
+program.sub.cmdcustomer_click.start
+V.Local.sCol.Declare(String)
+V.Local.sColW.Declare(String)
+V.Local.sQuery.Declare(String)
+V.Local.sRet.Declare(String)
+
+
+F.Intrinsic.String.Split("Customer Name*!*Customer ID","*!*",V.Local.sCol)
+F.Intrinsic.String.Split("2750*!*1000","*!*",V.Local.sColW)
+V.Local.sQuery.Set("SELECT NAME_CUSTOMER, CUSTOMER FROM V_CUSTOMER_MASTER ORDER BY NAME_CUSTOMER")
+
+Function.Intrinsic.UI.SetBrowserHotTypeAhead(True)
+F.Intrinsic.UI.Browser("Select a Customer","conx",V.Local.sQuery,V.Local.sCol,V.Local.sColW,5000,5000,V.Local.sRet)
+
+F.Intrinsic.Control.If(V.Local.sRet,<>,"***CANCEL***")
+	F.Intrinsic.String.Split(V.Local.sRet,"*!*",V.Local.sRet)
+	Gui.F_Part_Search.txtCustomer.Text(V.Local.sRet(0))
+	Gui.F_Part_Search.txtCustomer.SetMetaData(V.Local.sRet(1),V.Local.sRet(0))
+F.Intrinsic.Control.EndIf
+
+program.sub.cmdcustomer_click.end
+
+program.sub.f_part_results_unload.start
+Gui.F_Part_Results..Visible(False)
+F.Intrinsic.Control.CallSub(Clear)
+Gui.F_Part_Search..Enabled(True)
+'Gui.F_Part_Search..Visible(True)
+
+program.sub.f_part_results_unload.end
+
+program.sub.f_part_results_resize.start
+V.Local.width.Declare(Long)
+V.Local.height.Declare(Long)
+V.Local.gWidth.Declare(Long)
+
+F.Intrinsic.Control.If(V.Screen.F_Part_Results.Width,<,14500)
+	Gui.F_Part_Results..Size(14500,V.Screen.F_Part_Results.Height)
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.If(V.Screen.F_Part_Results.Height,<,2000)
+	Gui.F_Part_Results..Size(V.Screen.F_Part_Results.Width,2000)
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Math.Sub(V.Screen.F_Part_Results.Width,450,V.Local.width)
+F.Intrinsic.Math.Sub(V.Screen.F_Part_Results.Height,750,V.Local.height)
+Gui.F_Part_Results.gsfgResults.Size(V.Local.width,V.Local.height)
+
+F.Intrinsic.Control.If(V.Screen.F_Part_Results!gsfgResults.Width,>,14050)
+	F.Intrinsic.Math.Sub(V.Screen.F_Part_Results!gsfgResults.Width,7250,V.Local.gWidth)
+	F.Intrinsic.Math.Mult(V.Local.gWidth,0.26470588,V.Local.width)
+	Gui.F_Part_Results.gsfgResults.ColWidth(4,V.Local.width)
+	F.Intrinsic.Math.Mult(V.Local.gWidth,0.29411765,V.Local.width)
+	Gui.F_Part_Results.gsfgResults.ColWidth(5,V.Local.width)
+	F.Intrinsic.Math.Mult(V.Local.gWidth,0.44117647,V.Local.width)
+	Gui.F_Part_Results.gsfgResults.ColWidth(7,V.Local.width)
+F.Intrinsic.Control.Else
+	Gui.F_Part_Results.gsfgResults.ColWidth(4,"1800")
+	Gui.F_Part_Results.gsfgResults.ColWidth(5,"2000")
+	Gui.F_Part_Results.gsfgResults.ColWidth(7,"3000")
+F.Intrinsic.Control.EndIf
+
+program.sub.f_part_results_resize.end
+
+program.sub.cmdok_click.start
+V.Local.dDate.Declare(Date)
+V.Local.iC.Declare(Long)
+V.Local.sQuery.Declare(String)
+V.Local.sSQL.Declare(String)
+V.uLocal.Parts.Declare(Upart)
+V.Local.iRows.Declare(Long,1)
+V.local.iR.Declare(Long)
+V.Local.iUB.Declare(Long,-1)
+V.uGlobal.Parts.Redim(-1,-1)
+V.Local.iSec.Declare(Long)
+V.Local.iTempSec.Declare(Long)
+V.Local.sElements.Declare(String)
+V.Local.sTemp.Declare(String)
+V.Local.sDate.Declare(String)
+V.Local.iDateDiff.Declare(Long)
+V.Local.sTemp1.Declare(Long)
+V.Local.sTemp2.Declare(Long)
+V.Local.iSecsGridLoad.Declare(Long,0)
+V.Local.iResults.Declare(Long)
+V.Local.bCriteria.Declare(Boolean)
+
+V.Local.bCriteria.Set(True)
+'Gui.F_Part_Results.lvw1.Visible(false)
+'F.Intrinsic.Debug.InvokeDebugger
+F.Intrinsic.Debug.Stop
+F.Intrinsic.Control.If(V.Screen.F_Part_Search!txtPartNo.Text,=,"")
+	F.Intrinsic.Control.If(V.Screen.F_Part_Search!txtPartDesc.Text,=,"")
+		V.Local.bCriteria.Set(False)
+		F.Intrinsic.Control.If(V.Screen.F_Part_Search!txtCustomer.MetaData0,=,"")
+			F.Intrinsic.UI.Msgbox("Please enter search criteria")
+			F.Intrinsic.Control.ExitSub
+		F.Intrinsic.Control.EndIf
+	F.Intrinsic.Control.Else
+		F.Intrinsic.String.Concat(" Description like '%",V.Screen.F_Part_Search!txtPartDesc.Text,"%'",V.Local.sQuery)
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.Else
+	F.Intrinsic.Control.If(V.Screen.F_Part_Search!txtPartDesc.Text,=,"")
+		F.Intrinsic.String.Concat(" part like '%",V.Screen.F_Part_Search!txtPartNo.Text,"%'",V.Local.sQuery)
+	F.Intrinsic.Control.Else
+		F.Intrinsic.String.Concat(" part like '%",V.Screen.F_Part_Search!txtPartNo.Text,"%' AND DESCRIPTION LIKE '%",V.Screen.F_Part_Search!txtPartDesc.Text,"%'",V.Local.sQuery)
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.EndIf
+
+Gui.F_Part_Search..enabled(False)
+
+F.Intrinsic.Control.if(V.Screen.F_Part_Search!txtCustomer.MetaData0,<>,"")
+	F.Intrinsic.Control.If(V.Local.bCriteria,=,True)
+		F.Intrinsic.String.Concat(V.Local.sQuery," AND CUSTOMER='",V.Screen.F_Part_Search!txtCustomer.MetaData0,"'",V.Local.sQuery)
+	F.Intrinsic.Control.Else
+		F.Intrinsic.String.Concat(" CUSTOMER='",V.Screen.F_Part_Search!txtCustomer.MetaData0,"'",V.Local.sQuery)
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.UI.InvokeWaitDialog("Loading...")
+F.Intrinsic.Debug.TimerStart("tStart")
+V.Local.sElements.Set("Source*!*Type*!*Number*!*Date*!*Customer*!*PartNo*!*PL*!*Description*!*Quantity*!*Price")
+
+F.Intrinsic.Date.DateAdd("YYYY",-15,V.Ambient.Now,V.Local.dDate)
+V.Local.sDate.Set(V.local.dDate.pervasivedate)
+F.Intrinsic.String.Replace(V.Local.sDate,"-","",V.Local.sDate)
+
+F.Intrinsic.Control.CallSub(Loadrst,"sQuery",V.Local.sQuery,"sDate",V.Local.sDate,"iLoadType",0)
+F.Intrinsic.Control.CallSub(Loadrst,"sQuery",V.Local.sQuery,"sDate",V.Local.sDate,"iLoadType",1)
+F.Intrinsic.Control.CallSub(Loadrst,"sQuery",V.Local.sQuery,"sDate",V.Local.sDate,"iLoadType",2)
+
+V.Local.iResults.Set(V.Screen.F_Part_Search!txtResults.Text)
+F.Intrinsic.Control.If(V.Local.iResults,=,0)
+	V.Local.iResults.Set(100)
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Math.Add(V.Screen.F_Part_Results!gsfgResults.Rows,-1,V.Local.iRows)
+Gui.F_Part_Results.gsfgResults.Rows(V.Local.iRows)
+F.Intrinsic.Math.Add(V.Screen.F_Part_Results!gsfgResults.Rows,-1,V.Local.iRows)
+F.Intrinsic.Control.If(V.Screen.F_Part_Results!gsfgResults.Rows,<,2)
+	F.Intrinsic.UI.Msgbox("No results found")
+	Gui.F_Part_Search..Enabled(True)
+	F.Intrinsic.UI.CloseWaitDialog
+	F.Intrinsic.Control.ExitSub
+F.Intrinsic.Control.EndIf
+gui.F_Part_Results.gsfgResults.sortcolumn(10,1)
+Gui.F_Part_Results.gsfgResults.GetTextMatrix(10,1,V.Local.stemp1)
+Gui.F_Part_Results.gsfgResults.GetTextMatrix(10,V.Local.iRows,V.Local.sTemp2)
+
+F.Intrinsic.Control.If(V.Local.sTemp2,>,V.Local.sTemp1)
+	gui.F_Part_Results.gsfgResults.sortcolumn(10,1)
+F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.If(V.Local.iRows,>,V.Local.iResults)
+	F.Intrinsic.Math.Add(V.Local.iResults,1,V.Local.iResults)
+	Gui.F_Part_Results.gsfgResults.Rows(V.Local.iResults)
+F.Intrinsic.Control.EndIf
+F.Intrinsic.UI.CloseWaitDialog
+'Gui.F_Part_Search..Visible(False)
+Gui.F_Part_Results..Show
+
+F.Intrinsic.Debug.TimerElapsed("tStart",V.Local.iSec)
+F.Intrinsic.String.Concat("Loaded ",V.local.iRows," records"," in ",V.Local.iSec," seconds.",V.Local.sTemp)
+'F.Intrinsic.UI.Msgbox(V.Local.stemp)
+
+program.sub.cmdok_click.end
+
+Program.Sub.LoadRST.Start
+V.Local.iSec.Declare(Long)
+V.Local.iTempSec.Declare(Long)
+V.Static.iSecsGridLoad.Declare(Long)
+V.Local.sSQL.Declare(String)
+V.Local.iType.Declare(Long)
+V.Local.iResults.Declare(Long)
+V.Local.sWait.Declare(String)
+V.Static.iBLoaded.Declare(Long)
+'F.Intrinsic.debug.InvokeDebugger
+F.Intrinsic.Debug.Stop
+
+V.Local.iResults.Set(V.Screen.F_Part_Search!txtResults.Text)
+F.Intrinsic.Control.If(V.Local.iResults,=,0)
+	V.Local.iResults.Set(100)
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.SelectCase(V.Args.iLoadType)
+F.Intrinsic.Control.Case(0)
+	F.Intrinsic.String.Concat("SELECT TOP ",V.Local.iResults," 'global_shop' as SOURCE, 'order' as TYPE,ORDER_NO as NUMBER, IF (SUBSTRING (DATE_ORDER ,1 ,4 )>= '1900' AND SUBSTRING (DATE_ORDER ,1 ,4 )<= '2999' AND SUBSTRING (DATE_ORDER ,5 ,2 )<= '12' AND SUBSTRING (DATE_ORDER ,5 ,2 )>= '01' AND SUBSTRING (DATE_ORDER ,7 ,2 )<= '31' AND SUBSTRING (DATE_ORDER ,7 ,2 )>= '01' ,CONVERT (SUBSTRING (DATE_ORDER ,1 ,4 )+'-' +SUBSTRING (DATE_ORDER ,5 ,2 )+'-' +SUBSTRING (DATE_ORDER ,7 ,2 ),SQL_DATE ),CONVERT ('1900-01-01' ,SQL_DATE ))DATE, CUSTOMER, PART, PRODUCT_LINE AS PL, DESCRIPTION, QTY_ORDERED AS QUANTITY, PRICE, DATE_ORDER FROM ORDER_LINES WHERE RECORD_TYPE='L' AND ",V.args.sQuery," AND DATE_ORDER>='",V.args.sDate,"' ORDER BY DATE_ORDER DESC",V.local.sSQL)
+	'F.Intrinsic.String.Concat("SELECT TOP 250 'global_shop' as SOURCE, 'order' as TYPE,ORDER_NO as NUMBER, IF (SUBSTRING (DATE_ORDER ,1 ,4 )>= '1900' AND SUBSTRING (DATE_ORDER ,1 ,4 )<= '2999' AND SUBSTRING (DATE_ORDER ,5 ,2 )<= '12' AND SUBSTRING (DATE_ORDER ,5 ,2 )>= '01' AND SUBSTRING (DATE_ORDER ,7 ,2 )<= '31' AND SUBSTRING (DATE_ORDER ,7 ,2 )>= '01' ,CONVERT (SUBSTRING (DATE_ORDER ,1 ,4 )+'-' +SUBSTRING (DATE_ORDER ,5 ,2 )+'-' +SUBSTRING (DATE_ORDER ,7 ,2 ),SQL_DATE ),CONVERT ('1900-01-01' ,SQL_DATE ))DATE, CUSTOMER, PART, PRODUCT_LINE AS PL, DESCRIPTION, QTY_ORDERED AS QUANTITY, PRICE, DATE_ORDER FROM ORDER_LINES WHERE RECORD_TYPE='L' AND ",V.Local.sQuery," ORDER BY DATE_ORDER DESC",V.Local.sSQL)
+	V.Local.iType.Set(1)
+	V.Local.sWait.Set("Loading Open Order lines...")
+F.Intrinsic.Control.Case(1)
+	F.Intrinsic.String.Concat("SELECT TOP ",V.Local.iResults," 'global_shop' as SOURCE, 'order hist' as TYPE,ORDER_NO as NUMBER, IF (SUBSTRING (DATE_ORDER ,1 ,4 )>= '1900' AND SUBSTRING (DATE_ORDER ,1 ,4 )<= '2999' AND SUBSTRING (DATE_ORDER ,5 ,2 )<= '12' AND SUBSTRING (DATE_ORDER ,5 ,2 )>= '01' AND SUBSTRING (DATE_ORDER ,7 ,2 )<= '31' AND SUBSTRING (DATE_ORDER ,7 ,2 )>= '01' ,CONVERT (SUBSTRING (DATE_ORDER ,1 ,4 )+'-' +SUBSTRING (DATE_ORDER ,5 ,2 )+'-' +SUBSTRING (DATE_ORDER ,7 ,2 ),SQL_DATE ),CONVERT ('1900-01-01' ,SQL_DATE ))DATE, CUSTOMER, PART, PRODUCT_LINE AS PL, DESCRIPTION, QTY_ORDERED AS QUANTITY, PRICE, DATE_ORDER FROM ORDER_HIST_LINE WHERE ",V.args.sQuery," AND DATE_ORDER>='",V.args.sDate,"' ORDER BY DATE_ORDER DESC",V.Local.sSQL)
+	'F.Intrinsic.String.Concat("SELECT TOP 250 'global_shop' as SOURCE, 'order hist' as TYPE,ORDER_NO as NUMBER, IF (SUBSTRING (DATE_ORDER ,1 ,4 )>= '1900' AND SUBSTRING (DATE_ORDER ,1 ,4 )<= '2999' AND SUBSTRING (DATE_ORDER ,5 ,2 )<= '12' AND SUBSTRING (DATE_ORDER ,5 ,2 )>= '01' AND SUBSTRING (DATE_ORDER ,7 ,2 )<= '31' AND SUBSTRING (DATE_ORDER ,7 ,2 )>= '01' ,CONVERT (SUBSTRING (DATE_ORDER ,1 ,4 )+'-' +SUBSTRING (DATE_ORDER ,5 ,2 )+'-' +SUBSTRING (DATE_ORDER ,7 ,2 ),SQL_DATE ),CONVERT ('1900-01-01' ,SQL_DATE ))DATE, CUSTOMER, PART, PRODUCT_LINE AS PL, DESCRIPTION, QTY_ORDERED AS QUANTITY, PRICE, DATE_ORDER FROM ORDER_HIST_LINE WHERE ",V.Local.sQuery," ORDER BY DATE_ORDER DESC",V.Local.sSQL)
+	V.Local.iType.Set(1)
+	V.Local.sWait.Set("Loading Order History lines...")
+F.Intrinsic.Control.Case(2)
+	F.Intrinsic.String.Concat("SELECT TOP ",V.Local.iResults," 'global_shop' as SOURCE, 'quote' as TYPE,QUOTE_NO as NUMBER, IF (SUBSTRING (DATE_QUOTE ,1 ,4 )>= '1900' AND SUBSTRING (DATE_QUOTE ,1 ,4 )<= '2999' AND SUBSTRING (DATE_QUOTE ,5 ,2 )<= '12' AND SUBSTRING (DATE_QUOTE ,5 ,2 )>= '01' AND SUBSTRING (DATE_QUOTE ,7 ,2 )<= '31' AND SUBSTRING (DATE_QUOTE ,7 ,2 )>= '01' ,CONVERT (SUBSTRING (DATE_QUOTE ,1 ,4 )+'-' +SUBSTRING (DATE_QUOTE ,5 ,2 )+'-' +SUBSTRING (DATE_QUOTE ,7 ,2 ),SQL_DATE ),CONVERT ('1900-01-01' ,SQL_DATE ))DATE, CUSTOMER, PART, PRODUCT_LINE AS PL, DESCRIPTION, QTY_QUOTED AS QUANTITY, PRICE, DATE_QUOTE FROM QUOTE_LINES WHERE RECORD_TYPE='L' AND ",V.args.sQuery," AND DATE_QUOTE>='",V.args.sDate,"' ORDER BY DATE_QUOTE DESC",V.Local.sSQL)
+	'F.Intrinsic.String.Concat("SELECT TOP 250 'global_shop_test' as SOURCE, 'quote' as TYPE,QUOTE_NO as NUMBER, IF (SUBSTRING (DATE_QUOTE ,1 ,4 )>= '1900' AND SUBSTRING (DATE_QUOTE ,1 ,4 )<= '2999' AND SUBSTRING (DATE_QUOTE ,5 ,2 )<= '12' AND SUBSTRING (DATE_QUOTE ,5 ,2 )>= '01' AND SUBSTRING (DATE_QUOTE ,7 ,2 )<= '31' AND SUBSTRING (DATE_QUOTE ,7 ,2 )>= '01' ,CONVERT (SUBSTRING (DATE_QUOTE ,1 ,4 )+'-' +SUBSTRING (DATE_QUOTE ,5 ,2 )+'-' +SUBSTRING (DATE_QUOTE ,7 ,2 ),SQL_DATE ),CONVERT ('1900-01-01' ,SQL_DATE ))DATE, CUSTOMER, PART, PRODUCT_LINE AS PL, DESCRIPTION, QTY_QUOTED AS QUANTITY, PRICE, DATE_QUOTE FROM QUOTE_LINES WHERE RECORD_TYPE='L' AND ",V.Local.sQuery," ORDER BY DATE_QUOTE DESC",V.Local.sSQL)
+	V.Local.iType.Set(2)
+	V.Local.sWait.Set("Loading Quote lines...")
+F.Intrinsic.Control.EndSelect
+
+F.Intrinsic.UI.ChangeWaitStatus(V.Local.sWait)
+
+F.ODBC.connection!conx.OpenRecordsetRO("rstOrder",V.Local.sSQL)
+F.Intrinsic.Debug.TimerElapsed("tStart",V.Local.iSec)
+
+F.Intrinsic.Control.If(V.ODBC.conx!rstOrder.EOF,<>,True)
+	F.Intrinsic.Control.If(V.Static.iBLoaded,=,0)
+		Gui.F_Part_Results.gsfgResults.LoadRecordset("conx!rstOrder",V.Local.iType,"False")
+	F.Intrinsic.Control.Else
+		Gui.F_Part_Results.gsfgResults.LoadRecordset("conx!rstOrder",V.Local.iType,"True")
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.EndIf
+F.Intrinsic.Math.Add(V.Static.iBLoaded,1,V.Static.iBLoaded)
+F.ODBC.conx!rstOrder.Close
+
+F.Intrinsic.Debug.Stop
+V.Local.iTempSec.Set(V.Local.iSec)
+F.Intrinsic.Debug.TimerElapsed("tStart",V.Local.iSec)
+F.Intrinsic.Math.Sub(V.Local.iSec,V.Local.iTempSec,V.Local.iSec)
+F.Intrinsic.Math.Add(V.Static.iSecsGridLoad,V.Local.iSec,V.Static.iSecsGridLoad)
+
+Program.Sub.LoadRST.End
+
+program.sub.txtpartno_keypressenter.start
+F.Intrinsic.Control.CallSub("cmdok_click")
+
+program.sub.txtpartno_keypressenter.end
+
+program.sub.txtpartdesc_keypressenter.start
+F.Intrinsic.Control.CallSub("cmdok_click")
+
+program.sub.txtpartdesc_keypressenter.end
+
+Program.Sub.Clear.Start
+Gui.F_Part_Search.txtCustomer.ClearMetadata
+Gui.F_Part_Search.txtCustomer.Text("")
+Gui.F_Part_Search.txtPartDesc.Text("")
+Gui.F_Part_Search.txtPartNo.Text("")
+Gui.F_Part_Results.gsfgResults.Rows(1)
+Gui.F_Part_Results.gsfgResults.Rows(2)
+Gui.F_Part_Results.gsfgResults.FixedRows(1)
+
+Program.Sub.Clear.End
+
+program.sub.txtresults_gotfocus.start
+gui.F_Part_Search.txtResults.SelectAll
+
+program.sub.txtresults_gotfocus.end
+
+program.sub.txtresults_keypressenter.start
+F.Intrinsic.Control.CallSub("cmdok_click")
+
+
+program.sub.txtresults_keypressenter.end
+
+
